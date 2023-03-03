@@ -25,8 +25,8 @@ SECRET_KEY = 'django-insecure-3oz9tbd2dv@0ad+k+5pfj6c&gym$*tttnyh#q!8j#3=nb6trqx
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] #로컬호스트라 공백!
-
+ALLOWED_HOSTS = ['52.79.53.42'] #로컬호스트라 공백!
+#lightsail ㄱㄱ
 
 # Application definition
 
