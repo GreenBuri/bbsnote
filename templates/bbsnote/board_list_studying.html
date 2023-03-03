@@ -1,0 +1,18 @@
+{% comment %} 템플릿 태그로 작성하면 장고에서 해당 html에 데이터가 바인딩 되었음을 확인하고 실행해주는 것! {% endcomment %} 
+{% comment %} {{board_list}} 어떻게 출력되는지 확인해보자.이게바로 views밑에 context 데이타다.  {% endcomment %}
+{% extends 'base.html' %}
+{% comment %} base.html을 상속받아 애를 기준으로 기준을 잡을거야!-> block, endblock 사이에 내용 구상! {% endcomment %}
+{% block content %}
+{% if board_list %} {% comment %} 템플릿 태그 {% endcomment %} 
+    <ul>
+        {% for board in board_list %} {% comment %} board_list 안 데이터 전부 순회하라 {% endcomment %} 
+        <li><a href= "{% url 'bbsnote:detail' board.id %}" >{{board.subject}}</a></li> 
+        {% comment %}a태그를 통해 상대경로를 넣어줬음. 절대경로란(처음부터 끝까지 다 링크로 넣는 것) {% endcomment %} 
+        {% comment %}board id가 url에 출력되고, 템플릿에는 board 제목(subject)가 표시되도록 ul-li대로. {% endcomment %} 
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>글이 없습니다.</p> {% comment %}만약 board_list안에 데이터가 없다면! 해당 메시지 출력{% endcomment %} 
+{% endif %}
+{% endblock %}
+

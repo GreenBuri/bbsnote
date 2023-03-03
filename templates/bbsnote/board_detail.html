@@ -1,0 +1,22 @@
+<h1>{{board.subject}}</h1>
+<div>
+    {{board.content}}
+</div>
+
+<h5>{{board.comment_set.count}}개의 댓글이 있습니다.</h5>
+<div>
+    <ul>
+        {% for comment in board.comment_set.all %}
+            <li>{{comment.content}}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% comment %} form 태그는 정보를 담아 백엔드에 보내주는 애! csrf 공격을 막기 위함. {% endcomment %}
+<form action= "{% url 'bbsnote:comment_create' board.id %}" method= "POST" >
+    {% comment %} 지금현재 작성되는 게시글에게 이 커멘트를 등록시켜주겠어, 라는 실행문이다. {% endcomment %}
+    {% csrf_token %}
+    <textarea name= "content" id= "content" rows= "15" ></textarea>
+    <input type= "submit" value= " 댓글달기 " >
+    {% comment %} 백엔드로 보내주기 위한 submit(댓글달기):댓글달기를 누르는 순간 views.comment_create 에 redirect가 실행되는것. 버튼 추가 {% endcomment %}
+    </form>
+
